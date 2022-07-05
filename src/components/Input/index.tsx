@@ -14,7 +14,7 @@ const Input: React.FC<InputProps> = ({ previewMode, placeholder, value, type }) 
           placeholder={placeholder}
           disabled={previewMode}
           className={"custom__input__input"}
-        value={value}
+          value={value}
         />}
       {type === "description" &&
         <textarea className={"custom__input__textarea"} />
