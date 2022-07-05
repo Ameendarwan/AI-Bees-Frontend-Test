@@ -1,16 +1,14 @@
-import styles from "./Button.module.scss";
-
-const Button = () => {
+import "./Button.scss";
+interface ButtonProps {
+  title: string
+}
+const Button = ({ title, ...rest }: ButtonProps) => {
   return (
     <button
-      // {...rest}
-      // className={`${styles.button} ${
-      //   outlined ? styles.outlined : styles.solid
-      // } ${styles[size]} ${styles[shape]} ${circle ? styles.circle : ""} ${
-      //   styles[variant]
-      // }`}
+      className="button"
+      {...rest}
     >
-      {/* {children} */}
+      {title}
     </button>
   );
 };
