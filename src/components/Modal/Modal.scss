@@ -1,11 +1,13 @@
 @import "../../scss/variables";
 
 .custom__modal {
+  padding: 4rem;
+  padding-bottom: 0rem;
   position: relative;
-  background: $color_bg_light_grey;
+  background: $color_bg_dark_grey;
   width: 80%;
   height: max-content;
-  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.25);
+  border: 0.1rem solid $color_border;
   border-radius: 5em;
   overflow: auto;
   position: relative;
@@ -24,7 +26,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    // background: white;
     display: flex;
     align-items: center;
     justify-content: center;

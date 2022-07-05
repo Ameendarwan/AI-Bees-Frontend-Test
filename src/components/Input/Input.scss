@@ -1,0 +1,46 @@
+@import "../../scss/variables";
+
+.custom__input {
+  &__input {
+    height: 3rem;
+    width: 100%;
+    background-color: white;
+    font-size: 1.2rem;
+    text-indent: 1rem;
+    outline: none;
+    border: 0.1rem solid black;
+  }
+  &__textarea {
+    width: 100%;
+    height: 15rem;
+    resize: none;
+    background-color: white;
+    font-size: 1.2rem;
+    padding: 1rem;
+    outline: none;
+    border: 0.1rem solid black;
+  }
+
+  &.hasError {
+    outline: 0.0625em solid red;
+  }
+  &__outlined {
+    background-color: white;
+    border: 0.0625rem solid grey;
+  }
+  &__rounded {
+    border-radius: 1.1875rem;
+    padding-left: 1.21875rem;
+    padding-right: 1.21875rem;
+  }
+  &__no-border {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+  }
+  &__previewMode {
+    border: none;
+    background-color: transparent;
+    padding-left: 0;
+  }
+}

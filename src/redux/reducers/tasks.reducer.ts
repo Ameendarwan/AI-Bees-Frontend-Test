@@ -1,25 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  data: [],
-  plans: [],
-  showAddForm: false,
-  planId: null,
-  foodId: null,
+  tasks_list: [1,2,3,4],
 };
 
 export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    setShowAddForm: (state, action) => {
-      const { visibility, planId } = action.payload;
-      state.showAddForm = visibility;
-      state.planId = planId || null;
+    addTask: (state, action) => {
+      const { newList } = action.payload;
+      state.tasks_list = newList;
+    },
+    updateTask: (state, action) => {
+      const { newList } = action.payload;
+      state.tasks_list = newList;
+    },
+    deleteTask: (state, action) => {
+      const { newList } = action.payload;
+      state.tasks_list = newList;
     },
   },
 });
 
-export const { setShowAddForm } = tasksSlice.actions;
+export const { addTask, updateTask, deleteTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
