@@ -1,0 +1,17 @@
+@import "scss/variables";
+
+.button {
+   height: 3.0625rem;
+   padding-left: 1.4375rem;
+   padding-right: 1.4375rem;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 1.5625rem;
+   border: none;
+   cursor: pointer;
+   max-width: max-content;
+   white-space: nowrap;
+   box-sizing: border-box;
+ }
+ 

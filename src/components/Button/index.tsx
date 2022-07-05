@@ -1,7 +1,18 @@
-import React from 'react'
+import styles from "./Button.module.scss";
 
-export default function Button() {
+const Button = () => {
   return (
-    <div>index</div>
-  )
-}
+    <button
+      // {...rest}
+      // className={`${styles.button} ${
+      //   outlined ? styles.outlined : styles.solid
+      // } ${styles[size]} ${styles[shape]} ${circle ? styles.circle : ""} ${
+      //   styles[variant]
+      // }`}
+    >
+      {/* {children} */}
+    </button>
+  );
+};
+
+export default Button;

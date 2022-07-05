@@ -1,7 +1,19 @@
-import React from 'react'
 
-export default function Input() {
+const Input = () => {
   return (
-    <div>index</div>
-  )
-}
+    <div>
+
+        {/* <Typography variant="small">""</Typography> */}
+      
+      <input
+        // placeholder={placeholder}
+        // disabled={previewMode || disabled}
+        // className={classNames(styles[size])}
+        value={"yoyo"}
+        // {...rest}
+      />
+    </div>
+  );
+};
+
+export default Input;
