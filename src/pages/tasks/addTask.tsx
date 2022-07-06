@@ -1,7 +1,7 @@
 import { useState, useEffect, SetStateAction, Dispatch } from 'react';
 import { Grid } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
-import { ArrayObjectsProps, ObjectProps } from '../../interfaces';
+import { ArrayObjectsProps, ObjectProps, ButtonListProps } from '../../interfaces';
 import { RootState } from '../../redux/store';
 import { addTask } from '../../redux/reducers/tasks.reducer';
 import { circleButtons } from '../../constants/constants';
@@ -15,13 +15,7 @@ interface AddTaskProps {
    editValues: ObjectProps;
    handleClearEdit: () => void;
 }
-interface ButtonListProps {
-   id?: number;
-   title: string;
-   value: boolean;
-   priority: string;
-   type: string;
-}
+
 const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, editMode, handleClearEdit }) => {
    const dispatch = useDispatch();
    const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);

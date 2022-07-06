@@ -18,6 +18,7 @@ const TasksList = ({ data, setIsOpen, setEditMode, setEditValues, setViewMode }:
    const [tasks, setTasks] = useState<any>()
 
    useEffect(() => {
+      console.log("DAAAA", data)
       setTasks([...data])
    }, [data])
 
@@ -52,7 +53,11 @@ const TasksList = ({ data, setIsOpen, setEditMode, setEditValues, setViewMode }:
                         <span>{task.title}</span>
                         <div className='tasks__display__list__items__end__relative'>
                            <span>{task.priority}</span>
-                           <Button designType={'custom__button__circle__red'} value={true} />
+                           <Button designType={
+                              task.priority === "low" ? 'custom__button__circle__green' :
+                                 task.priority === "medium" ? 'custom__button__circle__yellow' :
+                                    'custom__button__circle__red'}
+                              value={true} />
                         </div>
                      </div>
                      <div className='tasks__display__list__items__display__flex__description'>
