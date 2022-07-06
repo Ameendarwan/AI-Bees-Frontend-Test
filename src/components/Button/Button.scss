@@ -16,6 +16,10 @@
     white-space: nowrap;
     box-sizing: border-box;
   }
+  &__done__tasks {
+    @extend .custom__button__primary;
+    background-color: $color_secondary_btn;
+  }
 
   &__circle {
     height: 2rem;

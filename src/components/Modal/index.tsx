@@ -2,8 +2,8 @@ import React from "react";
 import ReactModal from "react-modal";
 import "./Modal.scss";
 interface ButtonProps {
-  isOpen: boolean,
-  onClose?: any,
+  isOpen: boolean;
+  onClose?: any;
   children?: React.ReactNode;
 }
 
@@ -13,7 +13,7 @@ const Modal: React.FC<ButtonProps> = ({ isOpen, onClose, children }) => {
       isOpen={isOpen}
       onRequestClose={onClose}
       className={'custom__modal'}
-      shouldCloseOnOverlayClick={false}
+      shouldCloseOnOverlayClick={true}
       overlayClassName={"custom__modal__overlay"}
       ariaHideApp={false}
     >

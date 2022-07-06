@@ -1,42 +1,66 @@
-import { useState, useEffect } from 'react'
-import { Grid } from "@mui/material"
-import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react';
+import { Grid } from "@mui/material";
+import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { ArrayObjectsProps } from '../../interfaces';
-import Button from '../../components/Button'
-import TasksList from './tasksList'
+import Button from '../../components/Button';
+import TasksList from './tasksList';
+import DoneTasksList from './doneTasksList';
 import AddTask from './addTask';
-import "./Tasks.scss"
+import "./Tasks.scss";
 
 export default function Tasks() {
-  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
+  const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
   const [tasksList, setTasksList] = useState<ArrayObjectsProps[]>([])
+  const [editMode, setEditMode] = useState<boolean>(false)
+  const [doneTaskMode, setDoneTaskMode] = useState<boolean>(false)
+  const [editValues, setEditValues] = useState<any>()
 
   useEffect(() => {
-    console.log("NewList", listState)
     setTasksList([...listState]);
   }, [listState])
 
-  const handleSubmit = () => {
-    setIsOpen(false);
+  const handleClearEdit = () => {
+    setEditMode(false);
+    setEditValues(null);
+  }
+
+  const handleViewDoneTasks = () => {
+    setDoneTaskMode(true);
+    setIsOpen(true);
   }
 
   return (
     <Grid container>
       <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
         <div className='text-center mt-5'>
+          {doneListState.length > 0 && <Button title="View Done Tasks" type="button" designType="btn" onClick={handleViewDoneTasks} />}
           <h5>Hello world</h5>
         </div>
-        <AddTask
+        {!doneTaskMode && <AddTask
           isOpen={isOpen}
-        />
-        <div className='tasks__centered__btn'>
-          <Button title="Create Your First Task" type="btn" onClick={() => setIsOpen(true)} />
-        </div>
-        {tasksList &&
-          <TasksList data={tasksList} />
+          setIsOpen={setIsOpen}
+          editMode={editMode}
+          editValues={editValues}
+          handleClearEdit={handleClearEdit}
+        />}
+        {doneTaskMode && <DoneTasksList
+          isOpen={isOpen}
+        />}
+        {tasksList.length === 0 &&
+          <div className='tasks__centered__btn'>
+            <Button title="Create Your First Task" type="button" designType="btn" onClick={() => setIsOpen(true)} />
+          </div>}
+        {tasksList.length > 0 &&
+          <TasksList
+            data={tasksList}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            setEditMode={setEditMode}
+            setEditValues={setEditValues}
+          />
         }
       </Grid>
     </Grid>

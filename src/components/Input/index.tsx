@@ -4,6 +4,7 @@ interface InputProps {
   placeholder: string,
   value: string,
   type: string,
+  required?: boolean,
   onChange?: any
 }
 const Input: React.FC<InputProps> = ({ previewMode, placeholder, value, type, ...rest }) => {

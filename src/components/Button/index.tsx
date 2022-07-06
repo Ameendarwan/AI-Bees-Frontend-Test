@@ -1,19 +1,24 @@
+import AddIcon from '@mui/icons-material/Add';
 import "./Button.scss";
 interface ButtonProps {
-  title?: string,
-  type: string,
-  value?: boolean,
-  onClick?: React.MouseEventHandler,
+  title?: string;
+  designType?: string;
+  type?: "button" | "submit" | "reset" | undefined,
+  value?: boolean;
+  addClasses?: string;
+  onClick?: React.MouseEventHandler;
 }
-const Button = ({ title, value, type, ...rest }: ButtonProps) => {
+const Button = ({ title, value, type, designType, addClasses, ...rest }: ButtonProps) => {
   return (
     <button
-      type='button'
+      type={type}
       className={value === false ? "custom__button__circle__empty" :
-        value ? type : type === 'circle-add' ? "custom__button__circle__add" :
-          "custom__button__primary"}
+        value ? designType : designType === 'circle-add' ? "custom__button__circle__add" :
+          designType === 'done-tasks' ? "custom__button__done__tasks" :
+            "custom__button__primary"}
       {...rest}
     >
+      {designType === 'circle-add' && <AddIcon color="primary" />}
       {title}
     </button>
   );

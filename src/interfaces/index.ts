@@ -9,5 +9,7 @@ export interface ObjectProps {
   id: number | string;
   title: string;
   description: string;
+  gifts: string;
   priority: string;
+  status: string;
 }

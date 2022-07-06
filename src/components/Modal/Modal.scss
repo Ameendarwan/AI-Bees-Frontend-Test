@@ -6,7 +6,7 @@
   position: relative;
   background: $color_bg_dark_grey;
   width: 80%;
-  height: max-content;
+  height: 40rem;
   border: 0.1rem solid $color_border;
   border-radius: 5em;
   overflow: auto;
@@ -26,7 +26,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    // background: white;
+    background: white;
     display: flex;
     align-items: center;
     justify-content: center;
