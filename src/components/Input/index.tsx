@@ -4,9 +4,9 @@ interface InputProps {
   placeholder: string,
   value: string,
   type: string,
-  onChange?: void,
+  onChange?: any
 }
-const Input: React.FC<InputProps> = ({ previewMode, placeholder, value, type }) => {
+const Input: React.FC<InputProps> = ({ previewMode, placeholder, value, type, ...rest }) => {
   return (
     <div>
       {type === "input" &&
@@ -15,9 +15,14 @@ const Input: React.FC<InputProps> = ({ previewMode, placeholder, value, type }) 
           disabled={previewMode}
           className={"custom__input__input"}
           value={value}
+          {...rest}
         />}
       {type === "description" &&
-        <textarea className={"custom__input__textarea"} />
+        <textarea className={"custom__input__textarea"}
+          placeholder={placeholder}
+          value={value}
+          {...rest}
+        />
       }
     </div>
   );

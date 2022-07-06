@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  tasks_list: [1,2,3,4],
+  tasks_list: [],
 };
 
 export const tasksSlice = createSlice({

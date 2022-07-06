@@ -18,8 +18,8 @@
   }
 
   &__circle {
-    height: 3rem;
-    width: 3rem;
+    height: 2rem;
+    width: 2rem;
     border-radius: 50%;
     &__empty {
       @extend .custom__button__circle;

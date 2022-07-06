@@ -2,16 +2,16 @@ import "./Button.scss";
 interface ButtonProps {
   title?: string,
   type: string,
-  onClick? : React.MouseEventHandler,
+  value?: boolean,
+  onClick?: React.MouseEventHandler,
 }
-const Button = ({ title, type, ...rest }: ButtonProps) => {
+const Button = ({ title, value, type, ...rest }: ButtonProps) => {
   return (
     <button
-      className={type === 'circle-red' ? "custom__button__circle__red" :
-        type === 'circle-yellow' ? "custom__button__circle__yellow" :
-          type === 'circle-green' ? "custom__button__circle__green" :
-            type === 'circle-add' ? "custom__button__circle__add" :
-              type === 'circle-empty' ? "custom__button__circle__empty" : "custom__button__primary"}
+      type='button'
+      className={value === false ? "custom__button__circle__empty" :
+        value ? type : type === 'circle-add' ? "custom__button__circle__add" :
+          "custom__button__primary"}
       {...rest}
     >
       {title}

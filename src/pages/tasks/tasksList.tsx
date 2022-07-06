@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Grid } from "@mui/material"
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../redux/store';
+import { ArrayObjectsProps, ObjectProps } from '../../interfaces';
 
-export default function TasksList() {
-   const newList = useSelector((state: RootState) => state.tasks.tasks_list);
-   const [tasksList, setTasksList] = useState([])
+interface TaskListProps {
+   data: ArrayObjectsProps[],
+}
+const TasksList = ({ data }: TaskListProps) => {
+   const [tasks, setTasks] = useState<ArrayObjectsProps[]>([])
 
    useEffect(() => {
-   console.log("List", newList)
-   }, [newList])
+      setTasks([...data])
+   }, [data])
 
    return (
       <Grid container>
@@ -21,3 +22,4 @@ export default function TasksList() {
       </Grid>
    )
 }
+export default TasksList;

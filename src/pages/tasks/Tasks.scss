@@ -1,13 +1,23 @@
 .tasks {
+  &__container__circles {
+    text-align: center;
+    @media (max-width: 600px) {
+      text-align: left;
+    }
+  }
   &__centered__btn {
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    margin:auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  &__label__circle {
+    position: absolute;
+    padding-left: 10px;
   }
 }
