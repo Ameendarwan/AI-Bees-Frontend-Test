@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import TasksList from './tasksList';
 import DoneTasksList from './doneTasksList';
 import AddTask from './addTask';
+import ViewTask from './viewTask';
 import "./Tasks.scss";
 
 export default function Tasks() {
@@ -17,6 +18,7 @@ export default function Tasks() {
   const [editMode, setEditMode] = useState<boolean>(false)
   const [doneTaskMode, setDoneTaskMode] = useState<boolean>(false)
   const [editValues, setEditValues] = useState<any>()
+  const [viewMode, setViewMode] = useState<boolean>(false)
 
   useEffect(() => {
     setTasksList([...listState]);
@@ -49,6 +51,7 @@ export default function Tasks() {
         {doneTaskMode && <DoneTasksList
           isOpen={isOpen}
         />}
+        {viewMode && <ViewTask isOpen={isOpen} setIsOpen={setIsOpen} editValues={editValues} />}
         {tasksList.length === 0 &&
           <div className='tasks__centered__btn'>
             <Button title="Create Your First Task" type="button" designType="btn" onClick={() => setIsOpen(true)} />
@@ -58,6 +61,7 @@ export default function Tasks() {
             data={tasksList}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
+            setViewMode={setViewMode}
             setEditMode={setEditMode}
             setEditValues={setEditValues}
           />

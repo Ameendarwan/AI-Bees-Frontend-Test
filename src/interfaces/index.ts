@@ -13,3 +13,10 @@ export interface ObjectProps {
   priority: string;
   status: string;
 }
+export interface ButtonListProps {
+  id?: number;
+  title: string;
+  value: boolean;
+  priority?: string;
+  type: string;
+}
