@@ -15,14 +15,19 @@ export default function Tasks() {
   const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
   const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
   const [tasksList, setTasksList] = useState<ArrayObjectsProps[]>([])
+  const [doneTasksList, setDoneTasksList] = useState<ArrayObjectsProps[]>([])
   const [editMode, setEditMode] = useState<boolean>(false)
   const [doneTaskMode, setDoneTaskMode] = useState<boolean>(false)
   const [editValues, setEditValues] = useState<any>()
   const [viewMode, setViewMode] = useState<boolean>(false)
 
   useEffect(() => {
-    setTasksList([...listState]);
+    if (Array.isArray(listState)) setTasksList([...listState]);
   }, [listState])
+
+  useEffect(() => {
+    if (Array.isArray(doneListState) && doneListState.length > 0) setDoneTasksList([...doneListState]);
+  }, [doneListState])
 
   const handleClearEdit = () => {
     setEditMode(false);
@@ -54,11 +59,12 @@ export default function Tasks() {
         {viewMode && <ViewTask isOpen={isOpen} setIsOpen={setIsOpen} editValues={editValues} />}
         {tasksList.length === 0 &&
           <div className='tasks__centered__btn'>
-            <Button title="Create Your First Task" type="button" designType="btn" onClick={() => setIsOpen(true)} />
+            <Button title="Create Your First Task ;)" type="button" designType="btn" onClick={() => setIsOpen(true)} />
           </div>}
         {tasksList.length > 0 &&
           <TasksList
             data={tasksList}
+            data2={doneTasksList}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
             setViewMode={setViewMode}

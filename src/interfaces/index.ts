@@ -17,6 +17,6 @@ export interface ButtonListProps {
   id?: number;
   title: string;
   value: boolean;
-  priority?: string;
+  priority: string;
   type: string;
 }

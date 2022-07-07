@@ -50,26 +50,33 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues }) => {
          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <div className='text-center'>
                <Modal isOpen={isOpen}>
-                  <div className='tasks__done__tasks__heading'>
-                     <span>Done Tasks</span>
-                  </div>
                   <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className="mb-5">
-                     <div className="tasks__display__list__items">
-                        <div className='tasks__display__list__items__display__flex'>
-                           <span>{'Ameen'}</span>
-                           <div className='tasks__display__list__items__end__relative'>
-                              <span>{"High"}</span>
-                              <Button designType={'custom__button__circle__red'} value={true} />
-                           </div>
-                        </div>
-                        <div className='tasks__display__list__items__display__flex__description'>
-                           <span>{"Lopaaaaaaaa"}</span>
-                        </div>
+                     <div className="tasks__view__heading">
+                        <Button designType={
+                           editValues.priority === "Low" ? 'custom__button__circle__green' :
+                              editValues.priority === "Medium" ? 'custom__button__circle__yellow' :
+                                 'custom__button__circle__red'}
+                           value={true}
+                           type="button"
+                        />
+                        <span className="tasks__view__heading__priority__title">{editValues?.priority}</span>
+                        <span className="tasks__view__heading__task__title">{editValues?.title}</span>
                      </div>
+                     <Grid container justifyContent={"center"}>
+                        <Grid container item xs={12} sm={12} md={6} lg={6} xl={6} className="mb-5">
+                           <div className="justify-center mb-5">
+                              <p>
+                                 asc ccccc cccccc cccc ccccc ccccccc ccccccc ccccccc ccccc ccccccc
+                                 asc ccccc cccccc cccc ccccc ccccccc ccccccc ccccccc ccccc ccccccc
+                                 asc ccccc cccccc cccc ccccc ccccccc ccccccc ccccccc ccccc ccccccc
+                              </p>
+                           </div>
+                        </Grid>
+                     </Grid>
                   </Grid>
                   <Grid container className='mt-3 tasks__container__circles'>
                      {buttonsList.map((button, index) => (
-                        <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={button?.designType} type="button" value={button.value} onClick={() => handleActions(button.action, index)} /><span className='tasks__label__circle'>{button?.title}</span> </Grid>
+                        <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={button?.designType} type="button" value={button.value} title={button?.title} onClick={() => handleActions(button.action, index)} /></Grid>
                      ))}
                   </Grid>
                </Modal>

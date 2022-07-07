@@ -3,8 +3,7 @@
 .custom__button {
   &__primary {
     height: 3.0625rem;
-    padding-left: 1.4375rem;
-    padding-right: 1.4375rem;
+    padding: 1rem 2.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -15,6 +14,8 @@
     max-width: max-content;
     white-space: nowrap;
     box-sizing: border-box;
+    font-size: 1.3rem;
+    font-weight: 500;
   }
   &__done__tasks {
     @extend .custom__button__primary;
@@ -46,6 +47,20 @@
       width: 6rem;
       border-radius: 50%;
       background-color: $color_add_task;
+    }
+  }
+  &__normal {
+    &__red {
+      @extend .custom__button__primary;
+      background-color: $color_high_priority;
+    }
+    &__yellow {
+      @extend .custom__button__primary;
+      background-color: $color_primary_btn;
+    }
+    &__green {
+      @extend .custom__button__primary;
+      background-color: $color_low_priority;
     }
   }
 }

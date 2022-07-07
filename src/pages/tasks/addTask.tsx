@@ -22,7 +22,7 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, editMo
    const [title, setTitle] = useState("")
    const [description, setDescription] = useState("")
    const [gifts, setGifts] = useState("")
-   const [priority, setPriority] = useState("low")
+   const [priority, setPriority] = useState("Low")
    const [buttonsList, setButtonsList] = useState<ButtonListProps[]>([])
 
    useEffect(() => {
@@ -87,7 +87,7 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, editMo
                </div>
                <Grid container className='mt-3 tasks__container__circles'>
                   {buttonsList.map((circle, index) => (
-                     <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={circle?.type} type="button" value={circle.value} onClick={() => handlePriority(circle.title, index)} /><span className='tasks__label__circle'>{circle?.title}</span> </Grid>
+                     <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={circle?.type} type="button" value={circle.value} onClick={() => handlePriority(circle.priority, index)} /><span className='tasks__label__circle'>{circle?.title}</span> </Grid>
                   ))}
                </Grid>
                <div className='text-center mt-5 mb-1'>

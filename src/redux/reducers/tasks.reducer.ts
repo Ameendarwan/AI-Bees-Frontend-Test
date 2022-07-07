@@ -14,12 +14,12 @@ export const tasksSlice = createSlice({
       state.tasks_list = newList;
     },
     editTask: (state, action) => {
-      const { newList } = action.payload;
-      state.tasks_list = newList;
+      const { editTasks } = action.payload;
+      state.tasks_list = editTasks;
     },
     addDoneTask: (state, action) => {
-      const { newList } = action.payload;
-      state.done_tasks_list = newList;
+      const { doneTasksList } = action.payload;
+      state.done_tasks_list = doneTasksList;
     },
     deleteTask: (state, action) => {
       const { newList } = action.payload;
