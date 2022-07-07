@@ -1,6 +1,7 @@
 import { useState, useEffect, SetStateAction, Dispatch } from 'react';
 import { Grid } from "@mui/material";
 import _ from "lodash";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from 'react-redux';
 import { ArrayObjectsProps, ObjectProps } from '../../interfaces';
 import { RootState } from '../../redux/store';
@@ -38,6 +39,7 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setMode, setIsO
       if (index !== -1) {
          newList.splice(index, 1)
          dispatch(deleteTask({ newList }))
+         toast.success('Task has been deleted successfully!');
          setIsOpen(false)
       }
    }

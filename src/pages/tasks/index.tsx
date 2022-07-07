@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import _ from "lodash";
 import { Grid, Container } from "@mui/material";
+import { toast } from "react-toastify";
 import { editTask, addDoneTask } from '../../redux/reducers/tasks.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
@@ -56,6 +57,7 @@ export default function Tasks() {
     editTasks.splice(index, 1);
     dispatch(editTask({ editTasks }));
     dispatch(addDoneTask({ doneTasksList }));
+    toast.success('Task has been moved to the done tasks successfully!');
     setIsOpen(false)
   }
 

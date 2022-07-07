@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ArrayObjectsProps, ObjectProps, ButtonListProps } from '../../interfaces';
 import { RootState } from '../../redux/store';
 import { addTask } from '../../redux/reducers/tasks.reducer';
+import { toast } from "react-toastify";
 import { circleButtons } from '../../constants/constants';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
@@ -50,12 +51,17 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, mode, 
          gifts,
          status: 'pending'
       }
-      if (mode !== 'edit') newList.push(data);
+      if (mode !== 'edit') {
+         newList.push(data);
+         toast.success('Task has been added successfully!');
+      }
       else {
          let index = newList.findIndex((t) => t.id === editValues.id)
          data.id = editValues.id;
          newList[index] = data;
+         toast.success('Task has been updated successfully!');
       }
+
       dispatch(addTask({ newList }))
       setTitle("");
       setDescription("");
