@@ -38,7 +38,6 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, mode, 
       }
    }, [mode, editValues])
 
-
    const handleAdd = (e: any) => {
       e.preventDefault();
       setIsOpen(false)

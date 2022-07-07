@@ -3,9 +3,6 @@ import { Grid, Container } from "@mui/material";
 import _ from "lodash";
 import { ObjectProps } from '../../interfaces';
 import Button from '../../components/Button';
-import { useDispatch } from 'react-redux';
-import { addDoneTask, editTask } from '../../redux/reducers/tasks.reducer';
-import { getUniqueList } from "../../helper/getUniqueList";
 interface TaskListProps {
    data: any;
    data2: any;
@@ -16,17 +13,11 @@ interface TaskListProps {
    handleDoneTask: any;
 }
 const TasksList = ({ data, data2, setIsOpen, setEditValues, setMode, handleDoneTask }: TaskListProps) => {
-   const dispatch = useDispatch()
    const [tasks, setTasks] = useState<any>()
-   const [doneTasks, setDoneTasks] = useState<any>()
 
    useEffect(() => {
       setTasks([...data])
    }, [data])
-
-   useEffect(() => {
-      setDoneTasks([...data2])
-   }, [data2])
 
    const handleEdit = (e: React.MouseEvent<HTMLElement>, task: ObjectProps) => {
       e.stopPropagation();
@@ -34,16 +25,6 @@ const TasksList = ({ data, data2, setIsOpen, setEditValues, setMode, handleDoneT
       setEditValues(task)
       setIsOpen(true)
    }
-   // const handleDoneTask = (e: React.MouseEvent<HTMLElement>, task: ObjectProps, index: number) => {
-   //    e.stopPropagation();
-   //    let editTasks = getUniqueList(_.cloneDeep(data));
-   //    let findTask: any = tasks.find((d: ObjectProps) => d.id === task.id)
-   //    let doneTasksList = _.cloneDeep(doneTasks);
-   //    doneTasksList.push(findTask)
-   //    editTasks.splice(index, 1);
-   //    dispatch(editTask({ editTasks }));
-   //    dispatch(addDoneTask({ doneTasksList }));
-   // }
 
    const handleViewTask = (task: ObjectProps) => {
       setEditValues(task);

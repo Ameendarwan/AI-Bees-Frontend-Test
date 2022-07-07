@@ -9,7 +9,7 @@
     justify-content: center;
     border-radius: 0.5rem;
     background-color: $color_primary_btn;
-    border: 0.1rem solid black;
+    border: 0.01rem solid black;
     cursor: pointer;
     max-width: max-content;
     white-space: nowrap;
@@ -24,11 +24,11 @@
     color: white;
     cursor: pointer;
   }
-
   &__circle {
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
+    border: 0.01rem solid black;
     &__empty {
       @extend .custom__button__circle;
       background-color: $color_empty_circle;

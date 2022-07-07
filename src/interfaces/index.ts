@@ -4,7 +4,6 @@ export interface ArrayObjectsProps {
   description: string;
   priority: string;
 }
-
 export interface ObjectProps {
   id: number;
   title: string;

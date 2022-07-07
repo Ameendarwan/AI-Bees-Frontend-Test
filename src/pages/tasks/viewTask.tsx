@@ -69,7 +69,7 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setMode, setIsO
                         <span className="tasks__view__heading__task__title">{editValues?.title}</span>
                      </div>
                      <Grid container justifyContent={"center"}>
-                        <Grid container item xs={12} sm={12} md={10} lg={10} xl={10} className="mb-5">
+                        <Grid container item xs={12} sm={12} md={9} lg={9} xl={9} className="mb-5">
                            <div className="my-5">
                               <p className='text-justify'>{editValues?.description}</p>
                            </div>

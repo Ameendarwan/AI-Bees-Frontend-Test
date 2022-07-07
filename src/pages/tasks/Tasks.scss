@@ -40,15 +40,16 @@
     }
     &__display__flex__description {
       display: flex;
+      align-items: center;
       span {
-        display: flex;
+        display: block;
         align-items: center;
         font-size: 1rem;
         color: $color_light_placeholder;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 200px;
+        width: 30rem;
       }
       @media (max-width: 600px) {
         text-align: center;
