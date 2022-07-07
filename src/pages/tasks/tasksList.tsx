@@ -78,8 +78,8 @@ const TasksList = ({ data, data2, setIsOpen, setEditValues, setMode }: TaskListP
                      <div className='tasks__display__list__items__display__flex__description'>
                         <span>{task.description}</span>
                         <div className='tasks__display__list__items__end__relative mt-3'>
-                           <Button designType={'custom__button__circle__red'} type="button" title="Done Task" onClick={(e: React.MouseEvent<HTMLElement>) => handleDoneTask(e, task, index)} />
-                           <Button designType={'custom__button__circle__red'} type="button" title="Edit Task" addClasses={'ml-2'} onClick={(e: React.MouseEvent<HTMLElement>) => handleEdit(e, task)} />
+                           <Button designType={'custom__button__normal__yellow mt-3'} value={true} type="button" title="Done Task" onClick={(e: React.MouseEvent<HTMLElement>) => handleDoneTask(e, task, index)} />
+                           <Button designType={'custom__button__normal__green mt-3'} value={true} type="button" title="Edit Task" addClasses={'ml-2'} onClick={(e: React.MouseEvent<HTMLElement>) => handleEdit(e, task)} />
                         </div>
                      </div>
                   </div>

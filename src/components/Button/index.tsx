@@ -8,7 +8,7 @@ interface ButtonProps {
   addClasses?: string;
   onClick?: React.MouseEventHandler;
 }
-const Button = ({ title, value, type, designType, addClasses, ...rest }: ButtonProps) => {
+const Button = ({ title, value, type, designType, ...rest }: ButtonProps) => {
   return (
     <button
       type={type}
@@ -18,7 +18,7 @@ const Button = ({ title, value, type, designType, addClasses, ...rest }: ButtonP
             "custom__button__primary"}
       {...rest}
     >
-      {designType === 'circle-add' && <AddIcon color="primary" />}
+      {designType === 'circle-add' && <AddIcon color="primary" style={{ color: "white" }} fontSize="large" />}
       {title}
     </button>
   );

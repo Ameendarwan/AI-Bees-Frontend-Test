@@ -1,12 +1,12 @@
 export interface ArrayObjectsProps {
-  id: number | string;
+  id: number;
   title: string;
   description: string;
   priority: string;
 }
 
 export interface ObjectProps {
-  id: number | string;
+  id: number;
   title: string;
   description: string;
   gifts: string;

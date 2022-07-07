@@ -64,6 +64,10 @@
     &__green {
       @extend .custom__button__primary;
       background-color: $color_low_priority;
+      margin-left: 1rem;
+      @media (max-width: 500px) {
+        margin-left: 0rem;
+      }
     }
   }
 }

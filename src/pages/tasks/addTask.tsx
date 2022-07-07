@@ -54,6 +54,7 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, mode, 
       if (mode !== 'edit') newList.push(data);
       else {
          let index = newList.findIndex((t) => t.id === editValues.id)
+         data.id = editValues.id;
          newList[index] = data;
       }
       dispatch(addTask({ newList }))
