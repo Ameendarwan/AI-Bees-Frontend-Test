@@ -11,6 +11,7 @@ import Modal from '../../components/Modal';
 
 interface ViewTaskProps {
    isOpen: boolean;
+   setMode: Dispatch<SetStateAction<any>>;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
    editValues: ObjectProps;
    handleDoneTask: any;
@@ -20,18 +21,12 @@ export interface ButtonListProps {
    title: string;
    value: boolean;
    designType?: string;
-   action: string;
+   action: 'edit' | 'delete' | 'done' | string;
 }
-const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setIsOpen, handleDoneTask }) => {
+const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setMode, setIsOpen, handleDoneTask }) => {
    const dispatch = useDispatch();
    const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
-   const [tasks, setTasks] = useState<any>()
-   const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
    const [buttonsList, setButtonsList] = useState<ButtonListProps[]>([])
-
-   useEffect(() => {
-      setTasks([...doneListState])
-   }, [doneListState])
 
    useEffect(() => {
       setButtonsList([...normalButtons])
@@ -47,10 +42,13 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setIsOpen, hand
       }
    }
 
-   const handleActions = (e: React.MouseEvent, title: string, id: number) => {
-      console.log("VIEWW", title, id)
+   const handleEdit = () => {
+      setMode('edit');
+   }
+   const handleActions = (e: React.MouseEvent, title: 'edit' | 'delete' | 'done' | string, id: number) => {
       if (title === 'delete') handleDelete(id);
       else if (title === "done") handleDoneTask(e, id);
+      else handleEdit();
    }
 
    return (

@@ -85,6 +85,7 @@ export default function Tasks() {
         {mode === 'view' && <ViewTask isOpen={isOpen}
           setIsOpen={setIsOpen}
           editValues={editValues}
+          setMode={setMode}
           handleDoneTask={handleDoneTask}
         />}
 
