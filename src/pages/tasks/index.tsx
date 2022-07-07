@@ -97,7 +97,6 @@ export default function Tasks() {
         {tasksList.length > 0 &&
           <TasksList
             data={tasksList}
-            data2={doneTasksList}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
             setMode={setMode}

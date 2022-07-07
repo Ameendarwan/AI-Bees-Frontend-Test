@@ -5,14 +5,13 @@ import { ObjectProps } from '../../interfaces';
 import Button from '../../components/Button';
 interface TaskListProps {
    data: any;
-   data2: any;
    isOpen?: boolean;
    setMode: Dispatch<SetStateAction<string>>;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
    setEditValues: Dispatch<SetStateAction<any>>;
-   handleDoneTask: any;
+   handleDoneTask: (e: React.MouseEvent<HTMLElement>, id: number) => void;
 }
-const TasksList = ({ data, data2, setIsOpen, setEditValues, setMode, handleDoneTask }: TaskListProps) => {
+const TasksList = ({ data, setIsOpen, setEditValues, setMode, handleDoneTask }: TaskListProps) => {
    const [tasks, setTasks] = useState<any>()
 
    useEffect(() => {

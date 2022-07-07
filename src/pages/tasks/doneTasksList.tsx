@@ -1,11 +1,10 @@
-import { useState, useEffect, SetStateAction, Dispatch } from 'react'
-import { Grid } from "@mui/material"
-import { useSelector } from 'react-redux'
+import { useState, useEffect, SetStateAction, Dispatch } from 'react';
+import { Grid } from "@mui/material";
+import { useSelector } from 'react-redux';
 import { ArrayObjectsProps, ObjectProps } from '../../interfaces';
 import { RootState } from '../../redux/store';
-import Button from '../../components/Button'
-import Modal from '../../components/Modal'
-
+import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 interface AddTaskProps {
    isOpen: boolean;
    setIsOpen: Dispatch<SetStateAction<boolean>>;

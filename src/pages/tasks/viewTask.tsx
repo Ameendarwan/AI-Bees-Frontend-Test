@@ -14,7 +14,7 @@ interface ViewTaskProps {
    setMode: Dispatch<SetStateAction<any>>;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
    editValues: ObjectProps;
-   handleDoneTask: any;
+   handleDoneTask: (e: React.MouseEvent<HTMLElement>, id: number) => void;
 }
 export interface ButtonListProps {
    id: number;
@@ -45,7 +45,7 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setMode, setIsO
    const handleEdit = () => {
       setMode('edit');
    }
-   const handleActions = (e: React.MouseEvent, title: 'edit' | 'delete' | 'done' | string, id: number) => {
+   const handleActions = (e: any, title: 'edit' | 'delete' | 'done' | string, id: number) => {
       if (title === 'delete') handleDelete(id);
       else if (title === "done") handleDoneTask(e, id);
       else handleEdit();
