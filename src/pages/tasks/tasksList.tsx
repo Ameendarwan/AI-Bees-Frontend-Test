@@ -10,12 +10,11 @@ interface TaskListProps {
    data: any;
    data2: any;
    isOpen?: boolean;
-   setEditMode?: any;
-   setViewMode: Dispatch<SetStateAction<boolean>>;
+   setMode: Dispatch<SetStateAction<string>>;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
    setEditValues: Dispatch<SetStateAction<any>>;
 }
-const TasksList = ({ data, data2, setIsOpen, setEditMode, setEditValues, setViewMode }: TaskListProps) => {
+const TasksList = ({ data, data2, setIsOpen, setEditValues, setMode }: TaskListProps) => {
    const dispatch = useDispatch()
    const [tasks, setTasks] = useState<any>()
    const [doneTasks, setDoneTasks] = useState<any>()
@@ -30,7 +29,7 @@ const TasksList = ({ data, data2, setIsOpen, setEditMode, setEditValues, setView
 
    const handleEdit = (e: React.MouseEvent<HTMLElement>, task: ObjectProps) => {
       e.stopPropagation();
-      setEditMode(true)
+      setMode("edit")
       setEditValues(task)
       setIsOpen(true)
    }
@@ -47,9 +46,14 @@ const TasksList = ({ data, data2, setIsOpen, setEditMode, setEditValues, setView
    }
 
    const handleViewTask = (task: ObjectProps) => {
-      setEditValues(task)
-      setViewMode(true)
-      setIsOpen(true)
+      setEditValues(task);
+      setMode("view");
+      setIsOpen(true);
+   }
+
+   const handleAddTask = () => {
+      setMode("add");
+      setIsOpen(true);
    }
 
    return (
@@ -82,7 +86,7 @@ const TasksList = ({ data, data2, setIsOpen, setEditMode, setEditValues, setView
                </Grid>
             ))}
             <div className='mt-5 ms-auto'>
-               <Button designType={'circle-add'} type="button" onClick={() => setIsOpen(true)} />
+               <Button designType={'circle-add'} type="button" onClick={handleAddTask} />
             </div>
          </Grid>
       </Container>

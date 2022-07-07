@@ -10,13 +10,13 @@ import Modal from '../../components/Modal';
 import Input from '../../components/Input';
 interface AddTaskProps {
    isOpen: boolean;
-   editMode?: boolean;
+   mode?: string;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
    editValues: ObjectProps;
    handleClearEdit: () => void;
 }
 
-const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, editMode, handleClearEdit }) => {
+const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, mode, handleClearEdit }) => {
    const dispatch = useDispatch();
    const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
    const [title, setTitle] = useState("")
@@ -30,13 +30,13 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, editMo
    }, [])
 
    useEffect(() => {
-      if (editMode) {
+      if (mode === "edit") {
          setTitle(editValues.title);
          setDescription(editValues.description);
          setPriority(editValues.priority);
          setGifts(editValues.gifts);
       }
-   }, [editMode, editValues])
+   }, [mode, editValues])
 
 
    const handleAdd = (e: any) => {
@@ -51,7 +51,7 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, editMo
          gifts,
          status: 'pending'
       }
-      if (!editMode) newList.push(data);
+      if (mode !== 'edit') newList.push(data);
       else {
          let index = newList.findIndex((t) => t.id === editValues.id)
          newList[index] = data;
@@ -91,7 +91,7 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, editMo
                   ))}
                </Grid>
                <div className='text-center mt-5 mb-1'>
-                  <Button title={editMode ? "Update Task" : "Add To Tasks"} type="submit" designType="btn" />
+                  <Button title={mode === "edit" ? "Update Task" : "Add To Tasks"} type="submit" designType="btn" />
                </div>
             </form>
          </Modal>

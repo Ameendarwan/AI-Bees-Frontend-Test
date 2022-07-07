@@ -16,27 +16,29 @@ export default function Tasks() {
   const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
   const [tasksList, setTasksList] = useState<ArrayObjectsProps[]>([])
   const [doneTasksList, setDoneTasksList] = useState<ArrayObjectsProps[]>([])
-  const [editMode, setEditMode] = useState<boolean>(false)
-  const [doneTaskMode, setDoneTaskMode] = useState<boolean>(false)
   const [editValues, setEditValues] = useState<any>()
-  const [viewMode, setViewMode] = useState<boolean>(false)
+  const [mode, setMode] = useState<string>('')
 
   useEffect(() => {
     if (Array.isArray(listState)) setTasksList([...listState]);
   }, [listState])
 
   useEffect(() => {
-    console.log('DONE', doneListState);
     if (Array.isArray(doneListState) && doneListState.length > 0) setDoneTasksList([...doneListState]);
   }, [doneListState])
 
   const handleClearEdit = () => {
-    setEditMode(false);
+    setMode("");
     setEditValues(null);
   }
 
   const handleViewDoneTasks = () => {
-    setDoneTaskMode(true);
+    setMode("done");
+    setIsOpen(true);
+  }
+
+  const handleCreateTask = () => {
+    setMode("add");
     setIsOpen(true);
   }
 
@@ -44,30 +46,30 @@ export default function Tasks() {
     <Grid container>
       <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
         <Container>
-          <div className="tasks__view__heading my-5">
+          <div className="tasks__main">
             {doneListState.length > 0 && <Button title="View Done Tasks" type="button" designType="done-tasks" onClick={handleViewDoneTasks} />}
-            <span className="tasks__view__heading__task__title">{"Hello world"}</span>
+            <span className="tasks__main__title">{"Hello world"}</span>
           </div>
         </Container>
 
-        {!doneTaskMode && <AddTask
+        {mode === 'add' || mode === 'edit' ? <AddTask
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          editMode={editMode}
+          mode={mode}
           editValues={editValues}
           handleClearEdit={handleClearEdit}
-        />}
+        /> : ""}
 
-        {doneTaskMode && <DoneTasksList
+        {mode === 'done' && <DoneTasksList
           isOpen={isOpen}
           setIsOpen={setIsOpen}
         />}
 
-        {viewMode && <ViewTask isOpen={isOpen} setIsOpen={setIsOpen} editValues={editValues} />}
+        {mode === 'view' && <ViewTask isOpen={isOpen} setIsOpen={setIsOpen} editValues={editValues} />}
 
         {tasksList.length === 0 &&
           <div className='tasks__centered__btn'>
-            <Button title="Create Your First Task ;)" type="button" designType="btn" onClick={() => setIsOpen(true)} />
+            <Button title="Create Your First Task ;)" type="button" designType="btn" onClick={handleCreateTask} />
           </div>}
 
         {tasksList.length > 0 &&
@@ -76,8 +78,7 @@ export default function Tasks() {
             data2={doneTasksList}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            setViewMode={setViewMode}
-            setEditMode={setEditMode}
+            setMode={setMode}
             setEditValues={setEditValues}
           />
         }

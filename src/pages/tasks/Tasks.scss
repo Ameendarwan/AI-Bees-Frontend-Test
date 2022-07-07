@@ -80,10 +80,22 @@
       bottom: 5px;
       font-weight: 500;
     }
-    &__task__title {
-      font-size: 2rem;
+  }
+  &__main {
+    display: flex;
+    position: relative !important;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    &__done__button {
+      font-size: 1.5rem;
       margin-left: 1rem;
+      position: relative;
+      align-items: center;
       bottom: 5px;
+      font-weight: 500;
+    }
+    &__title {
+      font-size: 2rem;
       font-weight: 500;
       width: 100%;
       text-align: center;
