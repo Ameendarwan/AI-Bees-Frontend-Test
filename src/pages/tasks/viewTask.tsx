@@ -13,6 +13,7 @@ interface ViewTaskProps {
    isOpen: boolean;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
    editValues: ObjectProps;
+   handleDoneTask: any;
 }
 export interface ButtonListProps {
    id: number;
@@ -21,7 +22,7 @@ export interface ButtonListProps {
    designType?: string;
    action: string;
 }
-const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setIsOpen }) => {
+const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setIsOpen, handleDoneTask }) => {
    const dispatch = useDispatch();
    const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
    const [tasks, setTasks] = useState<any>()
@@ -46,16 +47,16 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setIsOpen }) =>
       }
    }
 
-   const handleActions = (title: string, id: number) => {
+   const handleActions = (e: React.MouseEvent, title: string, id: number) => {
       console.log("VIEWW", title, id)
       if (title === 'delete') handleDelete(id);
-      // else if( title === "done") haan
+      else if (title === "done") handleDoneTask(e, id);
    }
 
    return (
       <Grid container>
          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-            <div className='text-center overflow-auto'>
+            <div className='text-center'>
                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                   <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className="mb-5">
                      <div className="tasks__view__heading">
@@ -79,7 +80,7 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setIsOpen }) =>
                   </Grid>
                   <Grid container className='mt-3 tasks__container__circles'>
                      {buttonsList.map((button, index) => (
-                        <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={button?.designType} type="button" value={button.value} title={button?.title} onClick={() => handleActions(button.action, editValues.id)} /></Grid>
+                        <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={button?.designType} type="button" value={button.value} title={button?.title} onClick={(e) => handleActions(e, button.action, editValues.id)} /></Grid>
                      ))}
                   </Grid>
                </Modal>

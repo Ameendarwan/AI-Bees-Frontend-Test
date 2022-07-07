@@ -5,7 +5,6 @@ interface ButtonProps {
   designType?: string;
   type?: "button" | "submit" | "reset" | undefined,
   value?: boolean;
-  addClasses?: string;
   onClick?: React.MouseEventHandler;
 }
 const Button = ({ title, value, type, designType, ...rest }: ButtonProps) => {

@@ -19,7 +19,7 @@ const DoneTasksList: React.FC<AddTaskProps> = ({ isOpen, setIsOpen }) => {
    }, [doneListState])
 
    return (
-      <div className='text-center overflow-auto'>
+      <div className='text-center'>
          <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className='tasks__done__tasks__heading'>
                <span>Done Tasks</span>
@@ -28,7 +28,7 @@ const DoneTasksList: React.FC<AddTaskProps> = ({ isOpen, setIsOpen }) => {
                <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className="mb-5" key={task.id}>
                   <div className="tasks__display__list__items">
                      <div className='tasks__display__list__items__display__flex'>
-                        <span>{task.title}</span>
+                        <span>{task?.title}</span>
                         <div className='tasks__display__list__items__end__relative'>
                            <span>{task.priority}</span>
                            <Button designType={

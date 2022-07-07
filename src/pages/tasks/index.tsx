@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
+import _ from "lodash";
 import { Grid, Container } from "@mui/material";
-import { useSelector } from 'react-redux';
+import { editTask, addDoneTask } from '../../redux/reducers/tasks.reducer';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { ArrayObjectsProps } from '../../interfaces';
+import { ArrayObjectsProps, ObjectProps } from '../../interfaces';
 import Button from '../../components/Button';
 import TasksList from './tasksList';
 import DoneTasksList from './doneTasksList';
 import AddTask from './addTask';
 import ViewTask from './viewTask';
+import { getUniqueList } from "../../helper/getUniqueList";
 import "./Tasks.scss";
 
 export default function Tasks() {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
   const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
@@ -42,6 +46,19 @@ export default function Tasks() {
     setIsOpen(true);
   }
 
+  const handleDoneTask = (e: React.MouseEvent<HTMLElement>, id: number) => {
+    e.stopPropagation();
+    let editTasks = getUniqueList(_.cloneDeep(listState));
+    let findTask: any = listState?.find((d: any) => d.id === id)
+    let index: number = listState?.findIndex((d: any) => d.id === id)
+    let doneTasksList = _.cloneDeep(doneListState);
+    doneTasksList.push(findTask)
+    editTasks.splice(index, 1);
+    dispatch(editTask({ editTasks }));
+    dispatch(addDoneTask({ doneTasksList }));
+    setIsOpen(false)
+  }
+
   return (
     <Grid container>
       <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
@@ -65,7 +82,11 @@ export default function Tasks() {
           setIsOpen={setIsOpen}
         />}
 
-        {mode === 'view' && <ViewTask isOpen={isOpen} setIsOpen={setIsOpen} editValues={editValues} />}
+        {mode === 'view' && <ViewTask isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          editValues={editValues}
+          handleDoneTask={handleDoneTask}
+        />}
 
         {tasksList.length === 0 &&
           <div className='tasks__centered__btn'>
@@ -80,6 +101,7 @@ export default function Tasks() {
             setIsOpen={setIsOpen}
             setMode={setMode}
             setEditValues={setEditValues}
+            handleDoneTask={handleDoneTask}
           />
         }
       </Grid>

@@ -76,27 +76,25 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, mode, 
    }
 
    return (
-      <div className='overflow-auto'>
-         <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-            <form onSubmit={handleAdd}>
-               <Input value={title} placeholder='Task Title' previewMode={false} type={'input'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} />
-               <div className='mt-3'>
-                  <Input value={description} placeholder='Task Description' previewMode={false} type={'description'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)} />
-               </div>
-               <div className='mt-3'>
-                  <Input value={gifts} placeholder='Gifts and KPI for this task ;)' previewMode={false} type={'input'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setGifts(e.target.value)} />
-               </div>
-               <Grid container className='mt-3 tasks__container__circles'>
-                  {buttonsList.map((circle, index) => (
-                     <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={circle?.type} type="button" value={circle.value} onClick={() => handlePriority(circle.priority, index)} /><span className='tasks__label__circle'>{circle?.title}</span> </Grid>
-                  ))}
-               </Grid>
-               <div className='text-center mt-5 mb-1'>
-                  <Button title={mode === "edit" ? "Update Task" : "Add To Tasks"} type="submit" designType="btn" />
-               </div>
-            </form>
-         </Modal>
-      </div>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+         <form onSubmit={handleAdd}>
+            <Input value={title} placeholder='Task Title' previewMode={false} type={'input'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} />
+            <div className='mt-3'>
+               <Input value={description} placeholder='Task Description' previewMode={false} type={'description'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)} />
+            </div>
+            <div className='mt-3'>
+               <Input value={gifts} placeholder='Gifts and KPI for this task ;)' previewMode={false} type={'input'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setGifts(e.target.value)} />
+            </div>
+            <Grid container className='mt-3 tasks__container__circles'>
+               {buttonsList.map((circle, index) => (
+                  <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={circle?.type} type="button" value={circle.value} onClick={() => handlePriority(circle.priority, index)} /><span className='tasks__label__circle'>{circle?.title}</span> </Grid>
+               ))}
+            </Grid>
+            <div className='text-center mt-5 mb-1'>
+               <Button title={mode === "edit" ? "Update Task" : "Add To Tasks"} type="submit" designType="btn" />
+            </div>
+         </form>
+      </Modal>
    );
 };
 

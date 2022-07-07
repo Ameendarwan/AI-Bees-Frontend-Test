@@ -13,8 +13,9 @@ interface TaskListProps {
    setMode: Dispatch<SetStateAction<string>>;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
    setEditValues: Dispatch<SetStateAction<any>>;
+   handleDoneTask: any;
 }
-const TasksList = ({ data, data2, setIsOpen, setEditValues, setMode }: TaskListProps) => {
+const TasksList = ({ data, data2, setIsOpen, setEditValues, setMode, handleDoneTask }: TaskListProps) => {
    const dispatch = useDispatch()
    const [tasks, setTasks] = useState<any>()
    const [doneTasks, setDoneTasks] = useState<any>()
@@ -33,17 +34,16 @@ const TasksList = ({ data, data2, setIsOpen, setEditValues, setMode }: TaskListP
       setEditValues(task)
       setIsOpen(true)
    }
-
-   const handleDoneTask = (e: React.MouseEvent<HTMLElement>, task: ObjectProps, index: number) => {
-      e.stopPropagation();
-      let editTasks = getUniqueList(_.cloneDeep(data));
-      let findTask: any = tasks.find((d: ObjectProps) => d.id === task.id)
-      let doneTasksList = _.cloneDeep(doneTasks);
-      doneTasksList.push(findTask)
-      editTasks.splice(index, 1);
-      dispatch(editTask({ editTasks }));
-      dispatch(addDoneTask({ doneTasksList }));
-   }
+   // const handleDoneTask = (e: React.MouseEvent<HTMLElement>, task: ObjectProps, index: number) => {
+   //    e.stopPropagation();
+   //    let editTasks = getUniqueList(_.cloneDeep(data));
+   //    let findTask: any = tasks.find((d: ObjectProps) => d.id === task.id)
+   //    let doneTasksList = _.cloneDeep(doneTasks);
+   //    doneTasksList.push(findTask)
+   //    editTasks.splice(index, 1);
+   //    dispatch(editTask({ editTasks }));
+   //    dispatch(addDoneTask({ doneTasksList }));
+   // }
 
    const handleViewTask = (task: ObjectProps) => {
       setEditValues(task);
@@ -78,8 +78,8 @@ const TasksList = ({ data, data2, setIsOpen, setEditValues, setMode }: TaskListP
                      <div className='tasks__display__list__items__display__flex__description'>
                         <span>{task.description}</span>
                         <div className='tasks__display__list__items__end__relative mt-3'>
-                           <Button designType={'custom__button__normal__yellow mt-3'} value={true} type="button" title="Done Task" onClick={(e: React.MouseEvent<HTMLElement>) => handleDoneTask(e, task, index)} />
-                           <Button designType={'custom__button__normal__green mt-3'} value={true} type="button" title="Edit Task" addClasses={'ml-2'} onClick={(e: React.MouseEvent<HTMLElement>) => handleEdit(e, task)} />
+                           <Button designType={'custom__button__normal__yellow mt-3'} value={true} type="button" title="Done Task" onClick={(e: React.MouseEvent<HTMLElement>) => handleDoneTask(e, task.id)} />
+                           <Button designType={'custom__button__normal__green mt-3'} value={true} type="button" title="Edit Task" onClick={(e: React.MouseEvent<HTMLElement>) => handleEdit(e, task)} />
                         </div>
                      </div>
                   </div>
