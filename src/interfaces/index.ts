@@ -11,7 +11,7 @@ export interface ObjectProps {
   description: string;
   gifts: string;
   priority: string;
-  status: string;
+  status?: string;
 }
 export interface ButtonListProps {
   id?: number;

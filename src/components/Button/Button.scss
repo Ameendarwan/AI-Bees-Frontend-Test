@@ -20,6 +20,9 @@
   &__done__tasks {
     @extend .custom__button__primary;
     background-color: $color_secondary_btn;
+    z-index: 99 !important;
+    color: white;
+    cursor: pointer;
   }
 
   &__circle {

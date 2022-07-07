@@ -1,17 +1,17 @@
-import React from "react";
+import React, { SetStateAction, Dispatch } from 'react'
 import ReactModal from "react-modal";
 import "./Modal.scss";
 interface ButtonProps {
   isOpen: boolean;
-  onClose?: any;
-  children?: React.ReactNode;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  children: React.ReactNode;
 }
 
-const Modal: React.FC<ButtonProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ButtonProps> = ({ isOpen, setIsOpen, children }) => {
   return (
     <ReactModal
       isOpen={isOpen}
-      onRequestClose={onClose}
+      onRequestClose={() => setIsOpen(false)}
       className={'custom__modal'}
       shouldCloseOnOverlayClick={true}
       overlayClassName={"custom__modal__overlay"}

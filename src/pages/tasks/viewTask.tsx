@@ -9,7 +9,7 @@ import Modal from '../../components/Modal'
 
 interface ViewTaskProps {
    isOpen: boolean;
-   setIsOpen?: Dispatch<SetStateAction<boolean>>;
+   setIsOpen: Dispatch<SetStateAction<boolean>>;
    editValues: ObjectProps;
 }
 export interface ButtonListProps {
@@ -19,7 +19,7 @@ export interface ButtonListProps {
    designType?: string;
    action: string;
 }
-const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues }) => {
+const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setIsOpen }) => {
    const [tasks, setTasks] = useState<any>()
    const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
    const [buttonsList, setButtonsList] = useState<ButtonListProps[]>([])
@@ -48,8 +48,8 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues }) => {
    return (
       <Grid container>
          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-            <div className='text-center'>
-               <Modal isOpen={isOpen}>
+            <div className='text-center overflow-auto'>
+               <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                   <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className="mb-5">
                      <div className="tasks__view__heading">
                         <Button designType={
@@ -82,7 +82,7 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues }) => {
                </Modal>
             </div>
          </Grid>
-      </Grid>
+      </Grid >
    );
 };
 

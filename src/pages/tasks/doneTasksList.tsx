@@ -8,9 +8,9 @@ import Modal from '../../components/Modal'
 
 interface AddTaskProps {
    isOpen: boolean;
-   setIsOpen?: Dispatch<SetStateAction<boolean>>;
+   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
-const DoneTasksList: React.FC<AddTaskProps> = ({ isOpen }) => {
+const DoneTasksList: React.FC<AddTaskProps> = ({ isOpen, setIsOpen }) => {
    const [tasks, setTasks] = useState<any>()
    const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
 
@@ -19,8 +19,8 @@ const DoneTasksList: React.FC<AddTaskProps> = ({ isOpen }) => {
    }, [doneListState])
 
    return (
-      <div className='text-center'>
-         <Modal isOpen={isOpen}>
+      <div className='text-center overflow-auto'>
+         <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className='tasks__done__tasks__heading'>
                <span>Done Tasks</span>
             </div>

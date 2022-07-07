@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Grid } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { ArrayObjectsProps } from '../../interfaces';
@@ -26,6 +26,7 @@ export default function Tasks() {
   }, [listState])
 
   useEffect(() => {
+    console.log('DONE', doneListState);
     if (Array.isArray(doneListState) && doneListState.length > 0) setDoneTasksList([...doneListState]);
   }, [doneListState])
 
@@ -42,10 +43,13 @@ export default function Tasks() {
   return (
     <Grid container>
       <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-        <div className='text-center mt-5'>
-          {doneListState.length > 0 && <Button title="View Done Tasks" type="button" designType="btn" onClick={handleViewDoneTasks} />}
-          <h5>Hello world</h5>
-        </div>
+        <Container>
+          <div className="tasks__view__heading my-5">
+            {doneListState.length > 0 && <Button title="View Done Tasks" type="button" designType="done-tasks" onClick={handleViewDoneTasks} />}
+            <span className="tasks__view__heading__task__title">{"Hello world"}</span>
+          </div>
+        </Container>
+
         {!doneTaskMode && <AddTask
           isOpen={isOpen}
           setIsOpen={setIsOpen}
@@ -53,14 +57,19 @@ export default function Tasks() {
           editValues={editValues}
           handleClearEdit={handleClearEdit}
         />}
+
         {doneTaskMode && <DoneTasksList
           isOpen={isOpen}
+          setIsOpen={setIsOpen}
         />}
+
         {viewMode && <ViewTask isOpen={isOpen} setIsOpen={setIsOpen} editValues={editValues} />}
+
         {tasksList.length === 0 &&
           <div className='tasks__centered__btn'>
             <Button title="Create Your First Task ;)" type="button" designType="btn" onClick={() => setIsOpen(true)} />
           </div>}
+
         {tasksList.length > 0 &&
           <TasksList
             data={tasksList}

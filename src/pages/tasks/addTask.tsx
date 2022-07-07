@@ -75,8 +75,8 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, editMo
    }
 
    return (
-      <div>
-         <Modal isOpen={isOpen}>
+      <div className='overflow-auto'>
+         <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
             <form onSubmit={handleAdd}>
                <Input value={title} placeholder='Task Title' previewMode={false} type={'input'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} />
                <div className='mt-3'>
