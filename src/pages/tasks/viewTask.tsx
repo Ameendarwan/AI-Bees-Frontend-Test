@@ -47,7 +47,7 @@ const ViewTask = ({ isOpen, editValues, setMode, setIsOpen, handleDoneTask }: Vi
    const handleEdit = () => {
       setMode('edit');
    }
-   const handleActions = (e: any, title: 'edit' | 'delete' | 'done' | string, id: number) => {
+   const handleActions = (e: React.MouseEvent<HTMLElement>, title: 'edit' | 'delete' | 'done' | string, id: number) => {
       if (title === 'delete') handleDelete(id);
       else if (title === "done") handleDoneTask(e, id);
       else handleEdit();
@@ -78,9 +78,9 @@ const ViewTask = ({ isOpen, editValues, setMode, setIsOpen, handleDoneTask }: Vi
                         </Grid>
                      </Grid>
                   </Grid>
-                  <Grid container className='mt-3 tasks__container__circles'>
+                  <Grid container className='mt-3 tasks__container__normal__buttons'>
                      {buttonsList.map((button, index) => (
-                        <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={button?.designType} type="button" value={button.value} title={button?.title} onClick={(e) => handleActions(e, button.action, editValues.id)} /></Grid>
+                        <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={index}> <Button designType={`${button?.designType} mb-3`} type="button" value={button.value} title={button?.title} onClick={(e: React.MouseEvent<HTMLElement>) => handleActions(e, button.action, editValues.id)} /></Grid>
                      ))}
                   </Grid>
                </Modal>

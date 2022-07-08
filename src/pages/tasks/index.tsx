@@ -12,6 +12,7 @@ import DoneTasksList from './doneTasksList';
 import AddTask from './addTask';
 import ViewTask from './viewTask';
 import { getUniqueList } from "../../helper/getUniqueList";
+import { editValueConstant } from '../../constants/constants';
 import "./Tasks.scss";
 
 export default function Tasks() {
@@ -20,7 +21,7 @@ export default function Tasks() {
   const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
   const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
   const [tasksList, setTasksList] = useState<ArrayObjectsProps[]>([])
-  const [editValues, setEditValues] = useState<any>()
+  const [editValues, setEditValues] = useState<ArrayObjectsProps>(editValueConstant);
   const [mode, setMode] = useState<string>('')
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function Tasks() {
 
   const handleClearEdit = () => {
     setMode("");
-    setEditValues(null);
+    // setEditValues(null);
   }
 
   const handleViewDoneTasks = () => {

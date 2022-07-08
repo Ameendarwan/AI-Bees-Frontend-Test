@@ -1,7 +1,7 @@
 import { useState, useEffect, SetStateAction, Dispatch } from 'react';
 import { Grid } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
-import { ArrayObjectsProps, ObjectProps, ButtonListProps } from '../../interfaces';
+import { ArrayObjectsProps, ButtonListProps } from '../../interfaces';
 import { RootState } from '../../redux/store';
 import { addTask } from '../../redux/reducers/tasks.reducer';
 import { toast } from "react-toastify";
@@ -13,7 +13,7 @@ interface AddTaskProps {
    isOpen: boolean;
    mode?: string;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
-   editValues: ObjectProps;
+   editValues: ArrayObjectsProps;
    handleClearEdit: () => void;
 }
 
@@ -43,13 +43,12 @@ const AddTask = ({ isOpen, setIsOpen, editValues, mode, handleClearEdit }: AddTa
       e.preventDefault();
       setIsOpen(false)
       const newList = [...listState];
-      const data: ObjectProps = {
+      const data: ArrayObjectsProps = {
          id: newList.length,
          title,
          description,
          priority,
          gifts,
-         status: 'pending'
       }
       if (mode !== 'edit') {
          newList.push(data);
@@ -83,12 +82,19 @@ const AddTask = ({ isOpen, setIsOpen, editValues, mode, handleClearEdit }: AddTa
    return (
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
          <form onSubmit={handleAdd}>
-            <Input value={title} placeholder='Task Title' previewMode={false} type={'input'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} />
+            <Input value={title} placeholder='Task Title' previewMode={false} type={'input'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => setTitle(e.target.value)} />
             <div className='mt-3'>
-               <Input value={description} placeholder='Task Description' previewMode={false} type={'description'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)} />
+               <Input
+                  value={description}
+                  placeholder='Task Description'
+                  previewMode={false}
+                  type={'description'}
+                  required={true}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
+               />
             </div>
             <div className='mt-3'>
-               <Input value={gifts} placeholder='Gifts and KPI for this task ;)' previewMode={false} type={'input'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setGifts(e.target.value)} />
+               <Input value={gifts} placeholder='Gifts and KPI for this task ;)' previewMode={false} type={'input'} required={true} onChange={(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => setGifts(e.target.value)} />
             </div>
             <Grid container className='mt-3 tasks__container__circles'>
                {buttonsList.map((circle, index) => (

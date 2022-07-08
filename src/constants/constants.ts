@@ -20,7 +20,7 @@ export const circleButtons = [
     priority: "High",
     value: false,
   },
-];
+]
 
 export const normalButtons = [
   {
@@ -44,4 +44,12 @@ export const normalButtons = [
     designType: "custom__button__normal__red",
     value: true,
   },
-];
+]
+
+export const editValueConstant = {
+  id: 1000000,
+  title: "initial",
+  description: "",
+  priority: "low",
+  gifts: "bike",
+}

@@ -7,6 +7,9 @@
       text-align: left;
     }
   }
+  &__container__normal__buttons {
+    text-align: center;
+  }
   &__centered__btn {
     position: absolute;
     top: 0;
@@ -112,7 +115,7 @@
 
   &__view__heading {
     display: flex;
-    position: relative !important;
+    position: relative;
     &__priority__title {
       font-size: 1.5rem;
       margin-left: 1rem;
@@ -129,6 +132,13 @@
       width: 100%;
       text-align: center;
       position: absolute;
+      @media (max-width: 600px) {
+        position: relative;
+      }
+    }
+    @media (max-width: 600px) {
+      text-align: center;
+      display: block;
     }
   }
   &__main {
