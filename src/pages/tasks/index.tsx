@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { updateTaskList, addDoneTask } from '../../redux/reducers/tasks.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { ArrayObjectsProps, ObjectProps } from '../../interfaces';
+import { ArrayObjectsProps } from '../../interfaces';
 import Button from '../../components/Button';
 import TasksList from './tasksList';
 import DoneTasksList from './doneTasksList';
@@ -20,17 +20,12 @@ export default function Tasks() {
   const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
   const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
   const [tasksList, setTasksList] = useState<ArrayObjectsProps[]>([])
-  const [doneTasksList, setDoneTasksList] = useState<ArrayObjectsProps[]>([])
   const [editValues, setEditValues] = useState<any>()
   const [mode, setMode] = useState<string>('')
 
   useEffect(() => {
     if (Array.isArray(listState)) setTasksList([...listState]);
   }, [listState])
-
-  useEffect(() => {
-    if (Array.isArray(doneListState) && doneListState.length > 0) setDoneTasksList([...doneListState]);
-  }, [doneListState])
 
   useEffect(() => {
     if (!isOpen) setMode('');
