@@ -153,8 +153,7 @@
       position: absolute;
       z-index: 92;
       @media (max-width: 600px) {
-        display: block;
-        position: relative;
+        display: none;
       }
     }
     @media (max-width: 600px) {
