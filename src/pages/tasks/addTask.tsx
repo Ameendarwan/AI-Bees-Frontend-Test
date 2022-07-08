@@ -39,7 +39,7 @@ const AddTask = ({ isOpen, setIsOpen, editValues, mode, handleClearEdit }: AddTa
       }
    }, [mode, editValues])
 
-   const handleAdd = (e: any) => {
+   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setIsOpen(false)
       const newList = [...listState];
@@ -72,7 +72,7 @@ const AddTask = ({ isOpen, setIsOpen, editValues, mode, handleClearEdit }: AddTa
 
    const handlePriority = (title: string, id: number) => {
       const buttons = [...buttonsList]
-      buttons.map((btn: any) => {
+      buttons.map((btn: ButtonListProps) => {
          if (btn.id === id) btn.value = true;
          else btn.value = false;
       })

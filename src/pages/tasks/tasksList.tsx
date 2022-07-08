@@ -1,31 +1,30 @@
 import { useState, useEffect, SetStateAction, Dispatch } from 'react';
 import { Grid, Container } from "@mui/material";
-import _ from "lodash";
-import { ObjectProps } from '../../interfaces';
+import { ArrayObjectsProps } from '../../interfaces';
 import Button from '../../components/Button';
 interface TaskListProps {
-   data: any;
+   data: ArrayObjectsProps[];
    isOpen?: boolean;
    setMode: Dispatch<SetStateAction<string>>;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
-   setEditValues: Dispatch<SetStateAction<any>>;
+   setEditValues: Dispatch<SetStateAction<ArrayObjectsProps>>;
    handleDoneTask: (e: React.MouseEvent<HTMLElement>, id: number) => void;
 }
 const TasksList = ({ data, setIsOpen, setEditValues, setMode, handleDoneTask }: TaskListProps) => {
-   const [tasks, setTasks] = useState<any>()
+   const [tasks, setTasks] = useState<ArrayObjectsProps[]>()
 
    useEffect(() => {
       setTasks([...data])
    }, [data])
 
-   const handleEdit = (e: React.MouseEvent<HTMLElement>, task: ObjectProps) => {
+   const handleEdit = (e: React.MouseEvent<HTMLElement>, task: ArrayObjectsProps) => {
       e.stopPropagation();
       setMode("edit")
       setEditValues(task)
       setIsOpen(true)
    }
 
-   const handleViewTask = (task: ObjectProps) => {
+   const handleViewTask = (task: ArrayObjectsProps) => {
       setEditValues(task);
       setMode("view");
       setIsOpen(true);
@@ -39,7 +38,7 @@ const TasksList = ({ data, setIsOpen, setEditValues, setMode, handleDoneTask }: 
    return (
       <Container>
          <Grid container>
-            {tasks?.map((task: ObjectProps, index: number) => (
+            {tasks?.map((task: ArrayObjectsProps, index: number) => (
                <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className="mb-5" key={index}>
                   <div className="tasks__display__list__items" onClick={() => handleViewTask(task)}>
                      <div className='tasks__display__list__items__display__flex'>

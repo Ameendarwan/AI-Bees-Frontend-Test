@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import _ from "lodash";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from 'react-redux';
-import { ArrayObjectsProps, ObjectProps } from '../../interfaces';
+import { ArrayObjectsProps } from '../../interfaces';
 import { RootState } from '../../redux/store';
 import { deleteTask } from '../../redux/reducers/tasks.reducer';
 import { normalButtons } from '../../constants/constants';
@@ -12,9 +12,9 @@ import Modal from '../../components/Modal';
 
 interface ViewTaskProps {
    isOpen: boolean;
-   setMode: Dispatch<SetStateAction<any>>;
+   setMode: Dispatch<SetStateAction<string>>;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
-   editValues: ObjectProps;
+   editValues: ArrayObjectsProps;
    handleDoneTask: (e: React.MouseEvent<HTMLElement>, id: number) => void;
 }
 interface ButtonListProps {

@@ -1,7 +1,8 @@
-export const getUniqueList = (arr: any) => {
-  const ids = arr.map((o: any) => o.id);
+import { ArrayObjectsProps } from "../interfaces"
+export const getUniqueList = (arr: ArrayObjectsProps[]) => {
+  const ids = arr.map((o: ArrayObjectsProps) => o.id)
   const filtered = arr.filter(
-    ({ id }: any, index: number) => !ids.includes(id, index + 1)
-  );
-  return filtered;
-};
+    ({ id }: ArrayObjectsProps, index: number) => !ids.includes(id, index + 1),
+  )
+  return filtered
+}

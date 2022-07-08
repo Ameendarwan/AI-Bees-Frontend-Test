@@ -1,7 +1,7 @@
 import { useState, useEffect, SetStateAction, Dispatch } from 'react';
 import { Grid } from "@mui/material";
 import { useSelector } from 'react-redux';
-import { ArrayObjectsProps, ObjectProps } from '../../interfaces';
+import { ArrayObjectsProps } from '../../interfaces';
 import { RootState } from '../../redux/store';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
@@ -10,7 +10,7 @@ interface AddTaskProps {
    setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 const DoneTasksList = ({ isOpen, setIsOpen }: AddTaskProps) => {
-   const [tasks, setTasks] = useState<any>()
+   const [tasks, setTasks] = useState<ArrayObjectsProps[]>()
    const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
 
    useEffect(() => {
@@ -23,7 +23,7 @@ const DoneTasksList = ({ isOpen, setIsOpen }: AddTaskProps) => {
             <div className='tasks__done__tasks__heading'>
                <span>Done Tasks</span>
             </div>
-            {tasks?.map((task: ObjectProps) => (
+            {tasks?.map((task: ArrayObjectsProps) => (
                <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className="mb-5" key={task.id}>
                   <div className="tasks__display__list__items">
                      <div className='tasks__display__list__items__display__flex__done'>

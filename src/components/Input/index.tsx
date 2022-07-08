@@ -5,7 +5,7 @@ interface InputProps {
   value: string,
   type: string,
   required?: boolean,
-  onChange?: any
+  onChange?: (e: React.ChangeEvent<HTMLInputElement> | any) => void
 }
 const Input = ({ previewMode, placeholder, value, type, ...rest }: InputProps) => {
   return (
