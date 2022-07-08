@@ -31,11 +31,22 @@
     cursor: pointer;
     background: white;
     &__display__flex {
-      display: flex !important;
+      display: flex;
       span {
         align-items: center;
         font-size: 1.5rem;
         font-weight: 500;
+      }
+    }
+    &__display__flex__done {
+      display: flex;
+      span {
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+      @media (max-width: 600px) {
+        display: block;
       }
     }
     &__display__flex__description {
@@ -50,12 +61,37 @@
         overflow: hidden;
         text-overflow: ellipsis;
         width: 30rem;
+        padding-right: 1rem;
+        @media (max-width: 600px) {
+          width: 15rem;
+          text-align: left;
+        }
       }
       @media (max-width: 600px) {
         text-align: center;
         display: block;
       }
     }
+
+    &__display__flex__description__done__tasks {
+      display: flex;
+      align-items: center;
+      span {
+        display: block;
+        align-items: center;
+        font-size: 1rem;
+        color: $color_light_placeholder;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 30rem;
+        padding-right: 1rem;
+        @media (max-width: 600px) {
+          width: 15rem;
+        }
+      }
+    }
+
     &__end__relative {
       margin-left: auto;
       span {
@@ -97,7 +133,7 @@
   }
   &__main {
     display: flex;
-    position: relative !important;
+    position: relative;
     margin-top: 2.5rem;
     margin-bottom: 4rem;
     &__done__button {
@@ -116,6 +152,14 @@
       text-align: center;
       position: absolute;
       z-index: 92;
+      @media (max-width: 600px) {
+        display: block;
+        position: relative;
+      }
+    }
+    @media (max-width: 600px) {
+      text-align: center;
+      display: block;
     }
   }
 }

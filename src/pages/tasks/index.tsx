@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import _ from "lodash";
 import { Grid, Container } from "@mui/material";
 import { toast } from "react-toastify";
-import { editTask, addDoneTask } from '../../redux/reducers/tasks.reducer';
+import { updateTaskList, addDoneTask } from '../../redux/reducers/tasks.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { ArrayObjectsProps, ObjectProps } from '../../interfaces';
@@ -32,6 +32,10 @@ export default function Tasks() {
     if (Array.isArray(doneListState) && doneListState.length > 0) setDoneTasksList([...doneListState]);
   }, [doneListState])
 
+  useEffect(() => {
+    if (!isOpen) setMode('');
+  }, [isOpen])
+
   const handleClearEdit = () => {
     setMode("");
     setEditValues(null);
@@ -49,13 +53,13 @@ export default function Tasks() {
 
   const handleDoneTask = (e: React.MouseEvent<HTMLElement>, id: number) => {
     e.stopPropagation();
-    let editTasks = getUniqueList(_.cloneDeep(listState));
+    let updateTasks = getUniqueList(_.cloneDeep(listState));
     let findTask: any = listState?.find((d: any) => d.id === id)
     let index: number = listState?.findIndex((d: any) => d.id === id)
     let doneTasksList = _.cloneDeep(doneListState);
     doneTasksList.push(findTask)
-    editTasks.splice(index, 1);
-    dispatch(editTask({ editTasks }));
+    updateTasks.splice(index, 1);
+    dispatch(updateTaskList({ updateTasks }));
     dispatch(addDoneTask({ doneTasksList }));
     toast.success('Task has been moved to the done tasks successfully!');
     setIsOpen(false)
@@ -66,7 +70,13 @@ export default function Tasks() {
       <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
         <Container>
           <div className="tasks__main">
-            {doneListState.length > 0 && <Button title="View Done Tasks" type="button" designType="done-tasks" onClick={handleViewDoneTasks} />}
+            {doneListState.length > 0 && mode !== 'done' &&
+              <Button
+                title="View Done Tasks"
+                type="button"
+                designType="done-tasks"
+                onClick={handleViewDoneTasks}
+              />}
             <span className="tasks__main__title">{"Hello world"}</span>
           </div>
         </Container>

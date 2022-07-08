@@ -26,7 +26,7 @@ const DoneTasksList: React.FC<AddTaskProps> = ({ isOpen, setIsOpen }) => {
             {tasks?.map((task: ObjectProps) => (
                <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className="mb-5" key={task.id}>
                   <div className="tasks__display__list__items">
-                     <div className='tasks__display__list__items__display__flex'>
+                     <div className='tasks__display__list__items__display__flex__done'>
                         <span>{task?.title}</span>
                         <div className='tasks__display__list__items__end__relative'>
                            <span>{task.priority}</span>
@@ -37,7 +37,7 @@ const DoneTasksList: React.FC<AddTaskProps> = ({ isOpen, setIsOpen }) => {
                               value={true} />
                         </div>
                      </div>
-                     <div className='tasks__display__list__items__display__flex__description'>
+                     <div className='tasks__display__list__items__display__flex__description__done__tasks'>
                         <span>{task.description}</span>
                      </div>
                   </div>
