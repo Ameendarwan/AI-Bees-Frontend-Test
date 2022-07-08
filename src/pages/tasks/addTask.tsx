@@ -17,7 +17,7 @@ interface AddTaskProps {
    handleClearEdit: () => void;
 }
 
-const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, mode, handleClearEdit }) => {
+const AddTask = ({ isOpen, setIsOpen, editValues, mode, handleClearEdit }: AddTaskProps) => {
    const dispatch = useDispatch();
    const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
    const [title, setTitle] = useState("")
@@ -42,8 +42,8 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, mode, 
    const handleAdd = (e: any) => {
       e.preventDefault();
       setIsOpen(false)
-      let newList = [...listState];
-      let data: ObjectProps = {
+      const newList = [...listState];
+      const data: ObjectProps = {
          id: newList.length,
          title,
          description,
@@ -56,7 +56,7 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, mode, 
          toast.success('Task has been added successfully!');
       }
       else {
-         let index = newList.findIndex((t) => t.id === editValues.id)
+         const index = newList.findIndex((t) => t.id === editValues.id)
          data.id = editValues.id;
          newList[index] = data;
          toast.success('Task has been updated successfully!');
@@ -71,7 +71,7 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, setIsOpen, editValues, mode, 
    }
 
    const handlePriority = (title: string, id: number) => {
-      let buttons = [...buttonsList]
+      const buttons = [...buttonsList]
       buttons.map((btn: any) => {
          if (btn.id === id) btn.value = true;
          else btn.value = false;

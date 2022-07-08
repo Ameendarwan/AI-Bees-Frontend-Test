@@ -7,7 +7,7 @@ interface ButtonProps {
   children: React.ReactNode;
 }
 
-const Modal: React.FC<ButtonProps> = ({ isOpen, setIsOpen, children }) => {
+const Modal = ({ isOpen, setIsOpen, children }: ButtonProps) => {
   return (
     <ReactModal
       isOpen={isOpen}

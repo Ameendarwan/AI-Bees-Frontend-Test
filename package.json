@@ -29,9 +29,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "format": "prettier --write \"**/*.{ts,tsx,json,md,scss}\"",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix --ext .ts,.tsx",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -57,16 +57,16 @@
   "devDependencies": {
     "@types/lodash": "^4.14.182",
     "@types/react-modal": "^3.13.1",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
     "eslint": "^8.19.0",
-    "eslint-config-next": "^12.2.1",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.2.4",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
-    "lint-staged": "^13.0.3",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1",
     "sass": "^1.53.0"
-  },
-  "lint-staged": {
-    "*.{tsx,ts}": "npm run lint:fix"
   }
 }

@@ -9,7 +9,7 @@ interface AddTaskProps {
    isOpen: boolean;
    setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
-const DoneTasksList: React.FC<AddTaskProps> = ({ isOpen, setIsOpen }) => {
+const DoneTasksList = ({ isOpen, setIsOpen }: AddTaskProps) => {
    const [tasks, setTasks] = useState<any>()
    const doneListState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.done_tasks_list);
 

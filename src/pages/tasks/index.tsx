@@ -48,10 +48,10 @@ export default function Tasks() {
 
   const handleDoneTask = (e: React.MouseEvent<HTMLElement>, id: number) => {
     e.stopPropagation();
-    let updateTasks = getUniqueList(_.cloneDeep(listState));
-    let findTask: any = listState?.find((d: any) => d.id === id)
-    let index: number = listState?.findIndex((d: any) => d.id === id)
-    let doneTasksList = _.cloneDeep(doneListState);
+    const updateTasks = getUniqueList(_.cloneDeep(listState));
+    const findTask: any = listState?.find((d: any) => d.id === id)
+    const index: number = listState?.findIndex((d: any) => d.id === id)
+    const doneTasksList = _.cloneDeep(doneListState);
     doneTasksList.push(findTask)
     updateTasks.splice(index, 1);
     dispatch(updateTaskList({ updateTasks }));

@@ -17,14 +17,14 @@ interface ViewTaskProps {
    editValues: ObjectProps;
    handleDoneTask: (e: React.MouseEvent<HTMLElement>, id: number) => void;
 }
-export interface ButtonListProps {
+interface ButtonListProps {
    id: number;
    title: string;
    value: boolean;
    designType?: string;
    action: 'edit' | 'delete' | 'done' | string;
 }
-const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setMode, setIsOpen, handleDoneTask }) => {
+const ViewTask = ({ isOpen, editValues, setMode, setIsOpen, handleDoneTask }: ViewTaskProps) => {
    const dispatch = useDispatch();
    const listState: ArrayObjectsProps[] = useSelector((state: RootState) => state.tasks.tasks_list);
    const [buttonsList, setButtonsList] = useState<ButtonListProps[]>([])
@@ -34,8 +34,8 @@ const ViewTask: React.FC<ViewTaskProps> = ({ isOpen, editValues, setMode, setIsO
    }, [])
 
    const handleDelete = (id: number) => {
-      let newList = _.cloneDeep(listState);
-      let index: number = newList.findIndex((t) => t.id === id);
+      const newList = _.cloneDeep(listState);
+      const index: number = newList.findIndex((t) => t.id === id);
       if (index !== -1) {
          newList.splice(index, 1)
          dispatch(deleteTask({ newList }))

@@ -7,7 +7,7 @@ interface InputProps {
   required?: boolean,
   onChange?: any
 }
-const Input: React.FC<InputProps> = ({ previewMode, placeholder, value, type, ...rest }) => {
+const Input = ({ previewMode, placeholder, value, type, ...rest }: InputProps) => {
   return (
     <div>
       {type === "input" &&
